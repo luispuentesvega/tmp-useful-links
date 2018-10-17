@@ -19,3 +19,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# Logs
+logs
+*.Logs
+# Compiled directory and file
+build/
+bundle.js
+# Dependency directories
+node_modules/
+.idea/
