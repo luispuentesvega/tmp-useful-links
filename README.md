@@ -1,6 +1,6 @@
 SPA for storing useful links
 
-Installation 
+Usage
 ================
 ```
 npm start
