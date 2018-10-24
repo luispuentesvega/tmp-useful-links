@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
+import share from './share.png';
 
 class Header extends Component {
     render() {
         return (
-            <div className="Header">
-                <div><h2>Useful Links</h2></div>
-            </div>
+            <nav>
+                <ul>
+                    <li className="title"><h1>Useful Liks</h1><img src={share} height="40px" width="40px" alt=""/></li>
+                    <li><input type="text" placeholder="Search"/></li>
+                </ul>
+            </nav>
         )
     }
 }
