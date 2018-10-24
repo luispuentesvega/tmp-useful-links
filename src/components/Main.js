@@ -5,8 +5,9 @@ import Link from './Link';
 class Main extends Component {
     render() {
         return (
-            <div className="Main">
-                <Topic/>
+            <div>
+                <Link/>
+                <Link/>
                 <Link/>
             </div>
         )

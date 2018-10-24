@@ -3,12 +3,18 @@ import React, { Component } from 'react'
 class Link extends Component {
     render() {
        return (
-           <div className="Right-links">
-               <ul>
-                   <li>How to solve the Rubik's cube 3x3</li>
-                   <li>How to solve the Megaminx</li>
-               </ul>
-           </div>
+           <ul className="detail">
+               <li>
+                   <h2>Rubik's cube</h2>
+                   <div className="list">
+                       <ul>
+                           <li><a>How to solve the 3x3</a></li>
+                           <li><a>Best rubik's cube for collection</a></li>
+                           <li><a>How to solve the Megaminx</a></li>
+                       </ul>
+                   </div>
+               </li>
+           </ul>
        )
     }
 }

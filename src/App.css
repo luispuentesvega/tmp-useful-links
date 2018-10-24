@@ -1,25 +1,79 @@
-.Header {
-	overflow: hidden;
-	background-color: #f1f1f1;
-	padding: 10px 10px;
-	text-align:center;
+/* Simple reset and page style */
+* {
+    margin: 0;
+    padding: 0;
 }
 
-body {
-	font-family: 'Tangerine', serif;
-	font-size: 20px;
-}
-.Main {
-	width:100%;
-	height:100%;
-	//background-color:yellow;
-	display:flex;
+html {
+    background-color: #f3f3f3;
 }
 
-.Left-topics {
-	width:30%;
+/* Wrapper */
+.wrapper {
+    display: flex;
+    flex-flow:column wrap;
 }
 
-.Right-links {
-	width:70%;
+/* Nav */
+nav {
+    text-align: center;
 }
+
+nav h1 {
+    font: bold 50px san-serif;
+}
+
+nav .title {
+    display: flex;
+    justify-content: center;
+}
+
+nav input {
+    flex-grow: 5;
+    width: 90%;
+    height: 60px;
+    background-color: #f3f3f3;
+    border: 0;
+    border-bottom: 2px solid black;
+    font-size: 30px;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: darkgray;
+    font-size: 30px;
+}
+
+
+/* Detail */
+.detail {
+    border-radius: 3px;
+    margin: 10px auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-around;
+}
+
+.detail > li {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin:10px auto;
+    padding-bottom: 20px;
+    width: 100%;
+    padding-left:20px;
+    color: black;
+    font-size: 25px;
+}
+
+.detail h2 {
+    text-align: center;
+    color: blue;
+    padding-bottom: 10px;
+}
+
+a {
+    border-bottom: 1px solid black;
+}
+
