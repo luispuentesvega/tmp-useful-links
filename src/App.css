@@ -89,10 +89,6 @@ nav ::-webkit-input-placeholder {
         flex-direction: row;
     }
 
-    html {
-        background-color: #b9fad7;
-    }
-
     .detail .child {
         width: 40%;
     }
