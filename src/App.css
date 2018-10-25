@@ -1,4 +1,3 @@
-
 /* Simple reset and page style */
 * {
     margin: 0;
@@ -13,16 +12,19 @@ body {
     font-family: 'Open Sans';
 }
 
+img {
+    cursor: pointer;
+}
+
 /* Wrapper */
 .wrapper {
     display: flex;
-    flex-flow:column wrap;
+    flex-flow: column wrap;
 }
 
 /* Nav */
 nav {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     text-align: center;
 }
 
@@ -37,7 +39,6 @@ nav .title {
 }
 
 nav input {
-    flex-grow: 5;
     width: 90%;
     height: 60px;
     background-color: #f3f3f3;
@@ -46,11 +47,10 @@ nav input {
     font-size: 30px;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+nav ::-webkit-input-placeholder {
     color: darkgray;
     font-size: 30px;
 }
-
 
 /* Detail */
 .detail {
@@ -69,7 +69,7 @@ nav input {
     margin:10px;
     padding-bottom: 20px;
     width: 100%;
-    padding-left:20px;
+    padding-left: 20px;
     color: black;
     font-size: 16px;
     list-style: none;
@@ -77,11 +77,12 @@ nav input {
 
 .detail h2 {
     text-align: center;
-    color: blue;
+    color: #097cff;
     padding-bottom: 10px;
     font-size: 20px;
 }
 
+/* Ipads, Horizontal devices */
 @media (min-width:480px) {
     .detail {
         justify-content: flex-start;
@@ -89,7 +90,7 @@ nav input {
     }
 
     html {
-        background-color: lightgoldenrodyellow;
+        background-color: #b9fad7;
     }
 
     .detail .child {
