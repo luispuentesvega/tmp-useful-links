@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import Topic from './Topic';
-import Link from './Link';
+import List from './List';
 
 class Main extends Component {
     render() {
         return (
-            <div>
-                <Link/>
-                <Link/>
-                <Link/>
-            </div>
+            <ul className="detail">
+                <List/>
+                <List/>
+                <List/>
+            </ul>
         )
     }
 }

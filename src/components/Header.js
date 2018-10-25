@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import share from './share.png';
+import share from './images/share.png';
 
 class Header extends Component {
     render() {
