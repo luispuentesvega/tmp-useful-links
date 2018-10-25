@@ -12,7 +12,6 @@ class App extends Component {
     }
 
     showCreateHandler = show => {
-        console.log('App.js -> showCreateHandler ('+!this.state.showCreate+')');
         this.setState({showCreate: !this.state.showCreate});
     };
 

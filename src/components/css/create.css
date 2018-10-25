@@ -2,7 +2,11 @@
     box-sizing: border-box;
 }
 
-input[type=text], select, textarea {
+.form-create {
+    margin: 0 16px;
+}
+
+.form-create input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
