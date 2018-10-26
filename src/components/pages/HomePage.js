@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
-import Header from './components/Header';
-import Main from './components/Main';
+import '../../assets/css/App.css';
+import Header from '../shared/Header';
+import Topics from '../shared/Topics';
 
-class App extends Component {
+class HomePage extends Component {
     state = {
         showCreate: false
     }
@@ -17,10 +17,10 @@ class App extends Component {
         return (
             <div>
                 <Header onShowCreateChange={this.showCreateHandler} />
-                <Main showCreate={showCreate}/>
+                <Topics showCreate={showCreate}/>
             </div>
         );
-  }
+    }
 }
 
-export default App;
+export default HomePage;

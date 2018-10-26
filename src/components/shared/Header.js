@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import share from './images/share.png';
+import share from '../../assets/images/share.png';
 
 class Header extends Component {
     showCreateForm() {

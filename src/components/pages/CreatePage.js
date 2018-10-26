@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import './css/create.css';
+import '../../assets/css/create.css';
 
-class Create extends Component {
+class CreatePage extends Component {
 
     render() {
         return (
                 <div className="form-create">
                     <div className="row">
                         <div className="col-25">
-                            <label htmlFor="group">Group</label>
+                            <label htmlFor="group">Topic</label>
                         </div>
                         <div className="col-75">
                             <input type="text" name="group" placeholder="Group"/>
@@ -39,4 +39,4 @@ class Create extends Component {
     }
 }
 
-export default Create;
+export default CreatePage;
