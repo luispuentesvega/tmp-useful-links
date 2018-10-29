@@ -15,7 +15,7 @@ class HomePage extends Component {
     render() {
         const { showCreate } = this.state;
         return (
-            <div>
+            <div className="Home">
                 <Header onShowCreateChange={this.showCreateHandler} />
                 <Topics showCreate={showCreate}/>
             </div>
