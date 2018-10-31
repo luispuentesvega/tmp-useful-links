@@ -39,6 +39,7 @@ nav .title {
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 10px;
+    z-index: 100;
 }
 
 nav input {
