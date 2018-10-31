@@ -4,13 +4,10 @@ import CreatePage from '../pages/CreatePage';
 
 class Topics extends Component {
     render() {
-        return (
-            <div>
+        return ( <div>
                 { !this.props.showCreate &&
                     <ul className="detail">
-                        <Topic/>
-                        <Topic/>
-                        <Topic/>
+                        { this.props.topics.map((topic, index) => <Topic key={index} topic={topic}/>)}
                     </ul>
                 }
                 { this.props.showCreate && <CreatePage/>}

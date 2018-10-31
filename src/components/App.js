@@ -11,7 +11,7 @@ class App extends Component {
                 <MaintenancePage/>
             </div>
         );
-  }
+    }
 }
 
 export default App;

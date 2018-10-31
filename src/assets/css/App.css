@@ -27,6 +27,8 @@ img {
 nav {
     margin: 20px 0;
     text-align: center;
+    position: sticky;
+    top: 0;
 }
 
 nav h1 {
@@ -112,4 +114,17 @@ nav ::-webkit-input-placeholder {
     .Home {
         display: none;
     }
+}
+
+.sticky-image-wrapper{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 10%;
+    margin-bottom: 3%;
+}
+
+.sticky-image-wrapper img{
+    display: table;
+    position: relative;
 }

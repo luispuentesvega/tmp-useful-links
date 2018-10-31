@@ -11,7 +11,7 @@ class CreatePage extends Component {
                             <label htmlFor="group">Topic</label>
                         </div>
                         <div className="col-75">
-                            <input type="text" name="group" placeholder="Group"/>
+                            <input type="text" name="group" placeholder="Topic"/>
                         </div>
                     </div>
                     <div className="row">
