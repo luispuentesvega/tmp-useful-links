@@ -2,11 +2,11 @@
     box-sizing: border-box;
 }
 
-.form-create {
+.FormCreate {
     margin: 0 16px;
 }
 
-.form-create input[type=text], select, textarea {
+.FormCreate input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;

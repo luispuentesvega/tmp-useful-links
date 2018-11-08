@@ -95,6 +95,15 @@ nav ::-webkit-input-placeholder {
     display: unset;
 }
 
+.rowLink {
+    display: flex;
+    justify-content: space-between;
+}
+.rowIcons svg {
+    display: inline-block;
+    margin: 0 5px;
+}
+
 /* Ipads, Horizontal devices */
 @media (min-width:480px) {
     .detail {
@@ -117,7 +126,7 @@ nav ::-webkit-input-placeholder {
     }
 }
 
-.sticky-image-wrapper{
+.sticky-image-wrapper {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -125,7 +134,7 @@ nav ::-webkit-input-placeholder {
     margin-bottom: 3%;
 }
 
-.sticky-image-wrapper img{
+.sticky-image-wrapper img {
     display: table;
     position: relative;
 }

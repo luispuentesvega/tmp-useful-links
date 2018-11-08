@@ -5,7 +5,7 @@ class CreatePage extends Component {
 
     render() {
         return (
-                <div className="form-create">
+                <div className="FormCreate">
                     <div className="row">
                         <div className="col-25">
                             <label htmlFor="group">Topic</label>

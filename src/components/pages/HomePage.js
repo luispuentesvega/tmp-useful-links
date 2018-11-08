@@ -3,10 +3,12 @@ import '../../assets/css/App.css';
 import Header from '../shared/Header';
 import Topics from '../shared/Topics';
 import AddIcon from '../shared/AddIcon';
+import Maintenance from '../pages/MaintenancePage';
+import  { Redirect } from 'react-router-dom';
 
 class HomePage extends Component {
     state = {
-        showCreate: false,
+        toCreate: false,
         topics: [{
             'name':'Rubiks Cube',
             'links': [
@@ -77,8 +79,13 @@ class HomePage extends Component {
         ]
     }
 
-    showCreateHandler = show => {
-        this.setState({showCreate: !this.state.showCreate});
+    toCreateHandler = show => {
+        this.setState({toCreate: !this.state.toCreate});
+        if(this.state.toCreate) {
+            return <Redirect to='/create' />
+        } else {
+            return <Redirect to='/' />
+        }
     }
 
     removeLink = (indexTopic, indexLink) => {
@@ -89,12 +96,14 @@ class HomePage extends Component {
     }
 
     render() {
-        const { showCreate, topics } = this.state;
+        const { toCreate, topics } = this.state;
         return (
-            <div className="Home">
-                <Header onShowCreateChange={this.showCreateHandler}/>
-                <Topics topics={topics} showCreate={showCreate}/>
-                <AddIcon onShowCreateChange={this.showCreateHandler}/>
+            <div>
+                <div className="Home">
+                    <Header ontoCreateChange={this.toCreateHandler}/>
+                    <Topics topics={topics} toCreate={toCreate}/>
+                    <AddIcon ontoCreateChange={this.toCreateHandler}/>
+                </div>
             </div>
         );
     }
