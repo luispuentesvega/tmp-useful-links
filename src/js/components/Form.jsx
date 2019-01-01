@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addLink } from "../actions";
 import uuidv1 from 'uuid';
+import styles from './Form.css';
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -35,18 +36,23 @@ class ConnectedForm extends Component {
     render() {
         const { link } = this.state;
 
+        const BtnClasses = ['Btn'];
+
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label htmlFor="link">Link</label>
+            <form className={styles.Form} onSubmit={this.handleSubmit}>
+                <div className={styles.Form__Row}>
+                    <label htmlFor="link">Link: </label>
                     <input
+                        className={styles.Input}
                         type="text"
                         id="link"
                         value={link}
                         onChange={this.handleChange}
                     />
                 </div>
-                <button type="submit">SAVE</button>
+                <div className={styles.Form__Row}>
+                    <button className={[styles.Btn, styles.Btn__Save].join(' ')} type="submit">SAVE</button>
+                </div>
             </form>
         );
     }
