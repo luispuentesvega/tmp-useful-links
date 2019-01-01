@@ -1,13 +1,11 @@
 {
-  "main.css": "/useful-links/static/css/main.47b30d23.chunk.css",
-  "main.js": "/useful-links/static/js/main.a8ebfb4e.chunk.js",
-  "main.js.map": "/useful-links/static/js/main.a8ebfb4e.chunk.js.map",
-  "static/js/1.b4a30b0a.chunk.js": "/useful-links/static/js/1.b4a30b0a.chunk.js",
-  "static/js/1.b4a30b0a.chunk.js.map": "/useful-links/static/js/1.b4a30b0a.chunk.js.map",
+  "main.js": "/useful-links/static/js/main.fbe7659c.chunk.js",
+  "main.js.map": "/useful-links/static/js/main.fbe7659c.chunk.js.map",
+  "static/js/1.d1f77f5c.chunk.js": "/useful-links/static/js/1.d1f77f5c.chunk.js",
+  "static/js/1.d1f77f5c.chunk.js.map": "/useful-links/static/js/1.d1f77f5c.chunk.js.map",
   "runtime~main.js": "/useful-links/static/js/runtime~main.132c87c2.js",
   "runtime~main.js.map": "/useful-links/static/js/runtime~main.132c87c2.js.map",
-  "static/css/main.47b30d23.chunk.css.map": "/useful-links/static/css/main.47b30d23.chunk.css.map",
   "index.html": "/useful-links/index.html",
-  "precache-manifest.26d8598c9ccda0999aad9094d789f0df.js": "/useful-links/precache-manifest.26d8598c9ccda0999aad9094d789f0df.js",
+  "precache-manifest.623df4d46a4466aec2f52987f8d1c571.js": "/useful-links/precache-manifest.623df4d46a4466aec2f52987f8d1c571.js",
   "service-worker.js": "/useful-links/service-worker.js"
 }
