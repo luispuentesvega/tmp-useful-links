@@ -10,6 +10,10 @@ const rootReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 links: state.links.concat(action.payload)
             });
+        case actionTypes.DATA_LOADED:
+            return Object.assign({}, state, {
+                links: action.payload
+            });
         default:
             return state;
     }
