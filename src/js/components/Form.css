@@ -1,0 +1,25 @@
+.Form {
+    width: 100%;
+}
+
+.Form__Row {
+    width: 100%;
+    margin: 10px auto;
+}
+
+.Btn {
+    height: 30px;
+    width: 20%;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px black;
+}
+
+.Btn__Save {
+    background-color: #c5c5c5;
+}
+
+.Input {
+    padding: 10px;
+}
