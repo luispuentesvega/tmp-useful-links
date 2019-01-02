@@ -1,15 +1,14 @@
 import React from 'react';
 import List from './List';
 import Form from './Form';
-import styles from './App.css';
+import './App.css';
 
-const App = () => (
-    <div className={styles.App}>
-        <div className={styles.Links}>
+const App = () => (<div className="app">
+        <div className="Links">
             <h2>Links</h2>
             <List/>
         </div>
-        <div className={styles.Form}>
+        <div className="Form">
             <h2>Add Link</h2>
             <Form/>
         </div>

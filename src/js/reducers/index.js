@@ -14,6 +14,11 @@ const rootReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 links: action.payload
             });
+        case actionTypes.SET_TOPICS:
+            return {
+                ...state,
+                topics: action.topics
+            }
         default:
             return state;
     }
