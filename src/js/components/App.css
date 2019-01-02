@@ -1,10 +1,11 @@
-.App {
+.app {
     background: #f5f5f5;
     border: 1px solid black;
     border-radius: 3px;
     padding-left: 10px;
     box-sizing: content-box;
 }
+
 .Links {
     display: inline-block;
     width: 50%;

@@ -11,7 +11,7 @@ class ConnectedList extends Component {
         return (
             <ul>
                 { this.props.links.map(el => (
-                    <li key={el.id}> { el.link }</li>
+                    <li key={el.id}> {el.topic} : { el.link }</li>
                 ))}
             </ul>
         );
