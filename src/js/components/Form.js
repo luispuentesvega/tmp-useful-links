@@ -2,30 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {addLink, initTopics} from "../actions";
 import uuidv1 from 'uuid';
-import './Form.css';
-import Select from 'react-select';
+import './styles/Form.css';
 
 const mapDispatchToProps = dispatch => {
     return {
         addLink: link => dispatch(addLink(link)),
         onInitTopics: () => dispatch(initTopics())
     }
-}
+};
 
 const mapStateToProps = state => {
     return {
         topics: state.topics
     }
-}
+};
 
 class ConnectedForm extends Component {
 
     constructor () {
         super();
         this.state = {
-            link: '',
+            link: "",
             topicSelected: null,
-        }
+            title: ""
+        };
         this.options = [];
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,28 +42,19 @@ class ConnectedForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        console.log('validate():::',this.validate());
-
-        const { link, topicSelected } = this.state;
+        const { link, topicSelected, title } = this.state;
 
         if (topicSelected === null) {
-            return '';
+            return;
         }
 
-        const id = uuidv1();
-        const topic = topicSelected.value;
         this.props.addLink({
             link: link,
-            topic: topic,
-            id: id
+            topic: topicSelected,
+            title: title,
+            id: uuidv1()
         });
-        this.setState({ link: '', topicSelected:'' });
-    }
-
-    handleChangeSelect = (selectedOption) => {
-        this.setState({ topicSelected: selectedOption });
-        console.log(`Option selected:`, selectedOption);
+        this.setState({ link: "", topicSelected:"", title:"" });
     }
 
     validate() {
@@ -71,20 +62,22 @@ class ConnectedForm extends Component {
     }
 
     render() {
-        const { link, topic } = this.state;
+        const { link, topic, title } = this.state;
         const options = this.props.topics;
 
         return (
             <form className="Form" ref={this.form} onSubmit={this.handleSubmit}>
                 <div className="Form__Row">
-                    <label htmlFor="topic">Topic: </label>
-                    <Select
-                        id="topic"
+                    <label htmlFor="topicSelected">Topic: </label>
+                    <select
+                        id="topicSelected"
                         value={topic}
-                        onChange={this.handleChangeSelect}
-                        options={options}
-                        required
-                    />
+                        onChange={this.handleChange}
+                        required>
+                        { options!=undefined ?
+                            options.map(el => <option key={el.value}>{el.label}</option>)
+                        : null }
+                    </select>
                 </div>
                 <div className="Form__Row">
                     <label htmlFor="link">Link: </label>
@@ -94,6 +87,19 @@ class ConnectedForm extends Component {
                         id="link"
                         value={link}
                         onChange={this.handleChange}
+                        autoComplete="off"
+                        required
+                    />
+                </div>
+                <div className="Form__Row">
+                    <label htmlFor="title">Title:</label>
+                    <input
+                        className="Input"
+                        type="text"
+                        id="title"
+                        value={title}
+                        onChange={this.handleChange}
+                        autoComplete="off"
                         required
                     />
                 </div>

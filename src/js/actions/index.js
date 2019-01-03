@@ -1,36 +1,68 @@
-import { ADD_LINK, DATA_LOADED, SET_TOPICS } from "../constants/action-types";
-import axios from '../../axios-links';
+import * as actionTypes from "../constants/action-types";
+import axios from "../../axios-links";
+import store from '../store/index';
 
 export const addLinkSuccess = (payload) => {
     return {
-        type: ADD_LINK,
-        payload
+        type: actionTypes.ADD_LINK,
+        link: payload
     }
-}
+};
 
 export const addLink = (payload) => {
     return dispatch => {
-        axios.post('links.json', payload)
+        axios.post("links.json", payload)
             .then(response => {
                 dispatch(addLinkSuccess(payload));
             })
             .catch(error=> {
-                console.log('Error:::::::', error);
+                console.log("Error:::::::", error);
             })
     }
-}
+};
 
-export const dataLoaddedSuccess = (payload) => {
+export const dataLoaddedSuccess = (links) => {
     return {
-        type: DATA_LOADED,
-        payload
+        type: actionTypes.DATA_LOADED,
+        links: links
     }
-}
+};
+
+export const dataGroupsLoaddedSuccess = (groups) => {
+    return {
+        type: actionTypes.DATA_GROUPS_LOADED,
+        groups: groups
+    }
+};
 
 export const dataLoaded = () => {
     return dispatch => {
-        axios.get('/links.json')
+        axios.get("/links.json")
             .then(res => {
+                const _store = store.getState();
+
+                const groups = [];
+                for (let key in _store.topics) {
+                    if (key == '0') {
+                        continue;
+                    }
+                    groups.push(_store.topics[key].value);
+                }
+
+                const fetchedGroups = [];
+                for (let gp in groups) {
+                    let tmpLinks = [];
+                    for (let key in res.data) {
+                        if (res.data[key].topic != groups[gp]) {
+                            continue;
+                        }
+                        tmpLinks.push({
+                            ...res.data[key],
+                            id: key
+                        });
+                    }
+                    fetchedGroups[groups[gp]]= tmpLinks;
+                }
                 const fetchedLinks = [];
                 for (let key in res.data) {
                     fetchedLinks.push({
@@ -39,37 +71,39 @@ export const dataLoaded = () => {
                     });
                 }
                 dispatch(dataLoaddedSuccess(fetchedLinks));
+                dispatch(dataGroupsLoaddedSuccess(fetchedGroups));
             })
             .catch(err => {
-                console.log('Error:::::::::', err);
+                console.log("Error:::::::::", err);
             });
     }
-}
+};
 
 export const setTopics = (topics) => {
     return {
-        type: SET_TOPICS,
+        type: actionTypes.SET_TOPICS,
         topics: topics
     }
-}
+};
 
 export const initTopics = () => {
     return dispatch => {
-        axios.get('https://react-links-1df04.firebaseio.com/topics.json')
+        axios.get("https://react-links-1df04.firebaseio.com/topics.json")
             .then(res => {
-                const fetchedTopics = [];
-                console.log('res.data:::',res.data);
+                const fetchedTopics = [{
+                    value: 0,
+                    label: "..Seleccione uno..."
+                }];
                 for (let key in res.data) {
                     fetchedTopics.push({
                         value: key,
                         label: key
                     });
                 }
-                console.log('fetchedTopics::::::::',fetchedTopics);
                 dispatch(setTopics(fetchedTopics));
             })
             .catch(err=> {
-                console.log('Errror: ',err);
-            })
+                console.log("Errror: ",err);
+            });
     }
-}
+};
