@@ -9,9 +9,9 @@
 
 .Btn {
     height: 30px;
-    min-width: 40px;
+    min-width: 90px;
+    font-weight: bold;
     cursor: pointer;
-    border: 1px solid black;
     border-radius: 3px;
     box-shadow: 2px 2px 2px black;
 }
@@ -22,4 +22,9 @@
 
 .Input {
     padding: 10px;
+}
+
+.Form__Select {
+    height: 40px;
+    width: 187px;
 }

@@ -5,7 +5,7 @@ import "./styles/List.css";
 
 class ConnectedList extends Component {
     componentDidMount() {
-        this.props.onLoadData();
+        //this.props.onLoadData();
     }
 
     render() {
@@ -19,6 +19,7 @@ class ConnectedList extends Component {
                         <li key={ele.id}><a href={ele.link} target="_blank"> { ele.title ? ele.title : "...no found" }</a></li>
                     ))}
                 </ul>
+                <p className="main-group__footer"><span className="footer__number">{ links.length }</span></p>
             </li>);
         }
 
