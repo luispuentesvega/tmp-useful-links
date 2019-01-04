@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
-import List from './List';
-import Form from './Form';
-import './styles/App.css';
-import { connect } from 'react-redux';
-import * as actions from '../actions/index';
+import React, { Component } from "react";
+import List from "./List";
+import Form from "./Form";
+import "./styles/App.css";
+import { connect } from "react-redux";
+import * as actions from "../actions/index";
 
 class ConnectedApp extends Component {
+
+    componentDidMount() {
+        this.props.onLoadTopics();
+        this.props.onLoadData();
+    }
+
     render () {
         return (<div className="app">
                 <div className="Links">
@@ -21,12 +27,13 @@ class ConnectedApp extends Component {
     }
 }
 
-const mapDipatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
     return {
-        onLoadData: () => dispatch(actions.dataLoaded())
+        onLoadData: () => dispatch(actions.dataLoaded()),
+        onLoadTopics: () => dispatch(actions.initTopics())
     }
 };
 
-const App = connect(null, mapDipatchToProps)(ConnectedApp);
+const App = connect(null, mapDispatchToProps)(ConnectedApp);
 
 export default App;

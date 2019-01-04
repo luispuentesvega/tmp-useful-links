@@ -23,7 +23,7 @@ class ConnectedForm extends Component {
         super();
         this.state = {
             link: "",
-            topicSelected: null,
+            topicSelected: 0,
             title: ""
         };
         this.options = [];
@@ -44,7 +44,7 @@ class ConnectedForm extends Component {
         event.preventDefault();
         const { link, topicSelected, title } = this.state;
 
-        if (topicSelected === null) {
+        if (topicSelected === 0) {
             return;
         }
 
@@ -54,7 +54,7 @@ class ConnectedForm extends Component {
             title: title,
             id: uuidv1()
         });
-        this.setState({ link: "", topicSelected:"", title:"" });
+        this.setState({ link: "", topicSelected:0, title:"" });
     }
 
     validate() {
@@ -70,6 +70,7 @@ class ConnectedForm extends Component {
                 <div className="Form__Row">
                     <label htmlFor="topicSelected">Topic: </label>
                     <select
+                        className="Form__Select"
                         id="topicSelected"
                         value={topic}
                         onChange={this.handleChange}

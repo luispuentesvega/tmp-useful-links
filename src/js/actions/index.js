@@ -1,6 +1,6 @@
 import * as actionTypes from "../constants/action-types";
 import axios from "../../axios-links";
-import store from '../store/index';
+import store from "../store/index";
 
 export const addLinkSuccess = (payload) => {
     return {
@@ -41,9 +41,11 @@ export const dataLoaded = () => {
             .then(res => {
                 const _store = store.getState();
 
+                console.log("Getting Links : ",_store.topics);
+
                 const groups = [];
                 for (let key in _store.topics) {
-                    if (key == '0') {
+                    if (key == "0") {
                         continue;
                     }
                     groups.push(_store.topics[key].value);
@@ -70,6 +72,9 @@ export const dataLoaded = () => {
                         id: key
                     });
                 }
+
+                console.log("fetchedGroups::",fetchedGroups);
+
                 dispatch(dataLoaddedSuccess(fetchedLinks));
                 dispatch(dataGroupsLoaddedSuccess(fetchedGroups));
             })
