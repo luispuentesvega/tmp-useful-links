@@ -1,4 +1,4 @@
-SPA for storing useful links
+SPA developed with React for storing useful links
 
 Usage
 ================
