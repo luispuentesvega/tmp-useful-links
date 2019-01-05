@@ -97,7 +97,7 @@ export const initTopics = () => {
             .then(res => {
                 const fetchedTopics = [{
                     value: 0,
-                    label: "..Seleccione uno..."
+                    label: "..Choose a Topic..."
                 }];
                 for (let key in res.data) {
                     fetchedTopics.push({
