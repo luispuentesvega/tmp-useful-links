@@ -8,23 +8,34 @@
 }
 
 .Btn {
-    height: 30px;
-    min-width: 90px;
+    margin-top: 20px;
+    height: 40px;
+    border: 0;
     font-weight: bold;
+    color: white;
     cursor: pointer;
     border-radius: 3px;
-    box-shadow: 2px 2px 2px black;
+    width: 200px;
 }
 
 .Btn__Save {
-    background-color: #c5c5c5;
+    background-color: #EF5350;
 }
 
 .Input {
     padding: 10px;
+    border: 0;
+    background-color: #EBEBEB;
+    border-bottom: 2px solid red;
+    outline: none;
+    width: 200px;
+}
+
+.Input:focus {
+    border-bottom: 2px solid purple;
 }
 
 .Form__Select {
     height: 40px;
-    width: 187px;
+    width: 200px;
 }

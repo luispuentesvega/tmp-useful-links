@@ -68,7 +68,6 @@ class ConnectedForm extends Component {
         return (
             <form className="Form" ref={this.form} onSubmit={this.handleSubmit}>
                 <div className="Form__Row">
-                    <label htmlFor="topicSelected">Topic: </label>
                     <select
                         className="Form__Select"
                         id="topicSelected"
@@ -81,11 +80,11 @@ class ConnectedForm extends Component {
                     </select>
                 </div>
                 <div className="Form__Row">
-                    <label htmlFor="link">Link: </label>
                     <input
                         className="Input"
                         type="text"
                         id="link"
+                        placeholder="Link"
                         value={link}
                         onChange={this.handleChange}
                         autoComplete="off"
@@ -93,12 +92,12 @@ class ConnectedForm extends Component {
                     />
                 </div>
                 <div className="Form__Row">
-                    <label htmlFor="title">Title:</label>
                     <input
                         className="Input"
                         type="text"
                         id="title"
                         value={title}
+                        placeholder="Title"
                         onChange={this.handleChange}
                         autoComplete="off"
                         required
