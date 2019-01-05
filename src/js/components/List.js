@@ -4,15 +4,11 @@ import * as actions from '../actions/index';
 import "./styles/List.css";
 
 class ConnectedList extends Component {
-    componentDidMount() {
-        //this.props.onLoadData();
-    }
-
     render() {
         let buffer = [];
         for (let index in this.props.groups) {
             const links = this.props.groups[index];
-            buffer.push( <li className="main-group" key={index}>
+            buffer.push( <li className="main-group" id={index} key={index}>
                 <h2 className="main-group__title">{ index }</h2>
                 <ul className="main-group__links">
                     { links.map(ele => (

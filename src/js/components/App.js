@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import List from "./List";
+import Filter from "./Filter";
 import Form from "./Form";
 import "./styles/App.css";
 import { connect } from "react-redux";
@@ -16,6 +17,7 @@ class ConnectedApp extends Component {
         return (<div className="app">
                 <div className="Links">
                     <h2 className="main-title">Links</h2>
+                    <Filter/>
                     <List/>
                 </div>
                 <div className="Form">

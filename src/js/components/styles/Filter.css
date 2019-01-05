@@ -1,0 +1,25 @@
+.filter-options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.filter-option {
+    background-color: #6441A5;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0 5px;
+    margin: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.filter-option:hover {
+    color: #6441A5;
+    background-color: #fff;
+    border: 0.5px solid #6441A5;
+}
