@@ -10,7 +10,6 @@ class ConnectedApp extends Component {
 
     componentDidMount() {
         this.props.onLoadTopics();
-        this.props.onLoadData();
     }
 
     render () {
@@ -31,7 +30,6 @@ class ConnectedApp extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLoadData: () => dispatch(actions.dataLoaded()),
         onLoadTopics: () => dispatch(actions.initTopics())
     }
 };

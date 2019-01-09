@@ -18,12 +18,12 @@
     width: 200px;
 }
 
-.Btn__Save {
+.Btn--Save {
     background-color: #6441a5;
 }
 
-.Btn__Save:active,
-.Btn__Save:hover {
+.Btn--Save:active,
+.Btn--Save:hover {
     background-color: #EF5350;
 }
 
