@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {addLink, initTopics} from "../actions";
 import uuidv1 from 'uuid';
 import './styles/Form.css';
+import TextInput from "./Form/TextInput";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -80,31 +81,21 @@ class ConnectedForm extends Component {
                     </select>
                 </div>
                 <div className="Form__Row">
-                    <input
-                        className="Input"
-                        type="text"
-                        id="link"
-                        placeholder="Link"
+                    <TextInput
                         value={link}
-                        onChange={this.handleChange}
-                        autoComplete="off"
-                        required
-                    />
+                        placeholder="Link"
+                        id="link"
+                        changed={(event) =>{ this.handleChange(event)} }/>
                 </div>
                 <div className="Form__Row">
-                    <input
-                        className="Input"
-                        type="text"
-                        id="title"
+                    <TextInput
                         value={title}
                         placeholder="Title"
-                        onChange={this.handleChange}
-                        autoComplete="off"
-                        required
-                    />
+                        id="title"
+                        changed={(event)=>{ this.handleChange(event) }}/>
                 </div>
                 <div className="Form__Row">
-                    <button className="Btn Btn__Save" type="submit">SAVE</button>
+                    <button className="Btn Btn--Save" type="submit">SAVE</button>
                 </div>
             </form>
         );

@@ -106,6 +106,7 @@ export const initTopics = () => {
                     });
                 }
                 dispatch(setTopics(fetchedTopics));
+                dispatch(dataLoaded());
             })
             .catch(err=> {
                 console.log("Errror: ",err);
