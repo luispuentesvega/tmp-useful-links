@@ -30,6 +30,7 @@ class ConnectedForm extends Component {
         this.options = [];
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.closeModalChild = this.closeModalChild.bind(this);
         this.form = React.createRef();
     }
 
@@ -55,7 +56,16 @@ class ConnectedForm extends Component {
             title: title,
             id: uuidv1()
         });
+
+        alert('Succesfully Saved !');
+
+        this.closeModalChild();
+
         this.setState({ link: "", topicSelected:0, title:"" });
+    }
+
+    closeModalChild() {
+        this.props.closeModal();
     }
 
     validate() {
@@ -68,6 +78,9 @@ class ConnectedForm extends Component {
 
         return (
             <form className="Form" ref={this.form} onSubmit={this.handleSubmit}>
+                <div className="Form__Row">
+                    <h3>Add New Link</h3>
+                </div>
                 <div className="Form__Row">
                     <select
                         className="Form__Select"

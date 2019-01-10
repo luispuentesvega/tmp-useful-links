@@ -28,3 +28,38 @@
 .main-title {
     text-align: center;
 }
+
+.icon-add {
+    visibility: hidden;
+    cursor: pointer;
+    text-align: right;
+    position: sticky;
+    bottom: 0;
+    margin-top: 0;
+}
+
+@media screen and (max-width: 500px) {
+    .app {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .app > div {
+        width:100%;
+    }
+
+    .Links {
+        border-right:none;
+    }
+    .Form {
+        width: 100%;
+    }
+
+    .DesktopForm {
+        display: none;
+    }
+
+    .icon-add {
+        visibility: visible;
+    }
+}
