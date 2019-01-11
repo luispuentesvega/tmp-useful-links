@@ -1,35 +1,34 @@
-import React, {Component} from "react";
-import List from "./List";
-import Filter from "./Filter";
-import Form from "./Form";
-import Modal from "./Form/Modal";
-import "./styles/App.css";
-import {connect} from "react-redux";
-import * as actions from "../actions/index";
-import add from "./Images/add.png";
-import { ToastContainer, toast } from 'react-toastify';
+import React, {Component} from 'react';
+import List from './List';
+import Filter from './Filter';
+import Form from './Form';
+import Modal from './Form/Modal';
+import './styles/App.css';
+import {connect} from 'react-redux';
+import * as actions from '../actions/index';
+import add from './Images/add.png';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 class ConnectedApp extends Component {
-
     state = {
-        show: false
+        show: false,
     };
 
     showModal = e => {
         this.setState({
-            show: !this.state.show
+            show: !this.state.show,
         });
-    }
+    };
 
     closeModal = e => {
         this.setState({
-            show: false
+            show: false,
         });
-    }
+    };
 
     showNotification() {
-        toast("Succesfully Saved !");
+        toast('Succesfully Saved !');
     }
 
     componentDidMount() {
@@ -39,7 +38,7 @@ class ConnectedApp extends Component {
     render() {
         return (
             <div className="app">
-                <ToastContainer />
+                <ToastContainer/>
                 <div className="Links">
                     <h2 className="main-title">Links</h2>
                     <Filter/>
@@ -49,15 +48,17 @@ class ConnectedApp extends Component {
                     <h2 className="main-title">Add Link</h2>
                     <Form
                         showNotification={this.showNotification}
-                        closeModal={this.closeModal}/>
+                        closeModal={this.closeModal}
+                    />
                 </div>
-                <div className="icon-add" onClick={this.showModal}><img src={add}/></div>
-                <Modal
-                    onClose={this.showModal}
-                    show={this.state.show}>
+                <div className="icon-add" onClick={this.showModal}>
+                    <img src={add}/>
+                </div>
+                <Modal onClose={this.showModal} show={this.state.show}>
                     <Form
                         showNotification={this.showNotification}
-                        closeModal={this.closeModal}/>
+                        closeModal={this.closeModal}
+                    />
                 </Modal>
             </div>
         );
@@ -66,10 +67,13 @@ class ConnectedApp extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLoadTopics: () => dispatch(actions.initTopics())
-    }
+        onLoadTopics: () => dispatch(actions.initTopics()),
+    };
 };
 
-const App = connect(null, mapDispatchToProps)(ConnectedApp);
+const App = connect(
+    null,
+    mapDispatchToProps,
+)(ConnectedApp);
 
 export default App;

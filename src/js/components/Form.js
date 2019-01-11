@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {addLink, initTopics} from "../actions";
+import { addLink, initTopics } from '../actions';
 import uuidv1 from 'uuid';
 import './styles/Form.css';
-import TextInput from "./Form/TextInput";
+import TextInput from './Form/TextInput';
 
 const mapDispatchToProps = dispatch => {
     return {
         addLink: link => dispatch(addLink(link)),
-        onInitTopics: () => dispatch(initTopics())
-    }
+        onInitTopics: () => dispatch(initTopics()),
+    };
 };
 
 const mapStateToProps = state => {
     return {
-        topics: state.topics
-    }
+        topics: state.topics,
+    };
 };
 
 class ConnectedForm extends Component {
-
-    constructor () {
+    constructor() {
         super();
         this.state = {
-            link: "",
+            link: '',
             topicSelected: 0,
-            title: ""
+            title: '',
         };
         this.options = [];
         this.handleChange = this.handleChange.bind(this);
@@ -55,13 +54,13 @@ class ConnectedForm extends Component {
             link: link,
             topic: topicSelected,
             title: title,
-            id: uuidv1()
+            id: uuidv1(),
         });
 
         this.closeModalChild();
         this.showNotificationChild();
 
-        this.setState({ link: "", topicSelected:0, title:"" });
+        this.setState({ link: '', topicSelected: 0, title: '' });
     }
 
     closeModalChild() {
@@ -82,7 +81,11 @@ class ConnectedForm extends Component {
 
         return (
             <div>
-                <form className="Form" ref={this.form} onSubmit={this.handleSubmit}>
+                <form
+                    className="Form"
+                    ref={this.form}
+                    onSubmit={this.handleSubmit}
+                >
                     <div className="Form__Row">
                         <h3>Add New Link</h3>
                     </div>
@@ -92,10 +95,13 @@ class ConnectedForm extends Component {
                             id="topicSelected"
                             value={topic}
                             onChange={this.handleChange}
-                            required>
-                            { options!=undefined ?
-                                options.map(el => <option key={el.value}>{el.label}</option>)
-                            : null }
+                            required
+                        >
+                            {options != undefined
+                                ? options.map(el => (
+                                      <option key={el.value}>{el.label}</option>
+                                  ))
+                                : null}
                         </select>
                     </div>
                     <div className="Form__Row">
@@ -103,17 +109,25 @@ class ConnectedForm extends Component {
                             value={link}
                             placeholder="Link"
                             id="link"
-                            changed={(event) =>{ this.handleChange(event)} }/>
+                            changed={event => {
+                                this.handleChange(event);
+                            }}
+                        />
                     </div>
                     <div className="Form__Row">
                         <TextInput
                             value={title}
                             placeholder="Title"
                             id="title"
-                            changed={(event)=>{ this.handleChange(event) }}/>
+                            changed={event => {
+                                this.handleChange(event);
+                            }}
+                        />
                     </div>
                     <div className="Form__Row">
-                        <button className="Btn Btn--Save" type="submit">SAVE</button>
+                        <button className="Btn Btn--Save" type="submit">
+                            SAVE
+                        </button>
                     </div>
                 </form>
             </div>
@@ -121,6 +135,9 @@ class ConnectedForm extends Component {
     }
 }
 
-const Form = connect(mapStateToProps, mapDispatchToProps)(ConnectedForm);
+const Form = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(ConnectedForm);
 
 export default Form;

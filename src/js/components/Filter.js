@@ -1,24 +1,24 @@
-import React from "react";
-import "./styles/Filter.css";
-import {connect} from "react-redux";
+import React from 'react';
+import './styles/Filter.css';
+import { connect } from 'react-redux';
 
-const Filter = (props) => {
+const Filter = props => {
     let buffer = [];
     for (let index in props.groups) {
-        buffer.push(<a key={index} href={"#"+index} className="filter-option">{index}</a>);
+        buffer.push(
+            <a key={index} href={'#' + index} className="filter-option">
+                {index}
+            </a>,
+        );
     }
 
-    return (
-        <p className="filter-options">
-            { buffer }
-        </p>
-    );
+    return <p className="filter-options">{buffer}</p>;
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
-        groups: state.groups
-    }
-}
+        groups: state.groups,
+    };
+};
 
 export default connect(mapStateToProps)(Filter);
