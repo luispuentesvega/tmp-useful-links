@@ -1,51 +1,53 @@
-import * as actionTypes from "../constants/action-types";
-import axios from "../../axios-links";
-import store from "../store/index";
+import * as actionTypes from '../constants/action-types';
+import axios from '../../axios-links';
+import store from '../store/index';
 
-export const addLinkSuccess = (payload) => {
+export const addLinkSuccess = payload => {
     return {
         type: actionTypes.ADD_LINK,
-        link: payload
-    }
+        link: payload,
+    };
 };
 
-export const addLink = (payload) => {
+export const addLink = payload => {
     return dispatch => {
-        axios.post("links.json", payload)
+        axios
+            .post('links.json', payload)
             .then(response => {
                 dispatch(addLinkSuccess(payload));
             })
-            .catch(error=> {
-                console.log("Error:::::::", error);
-            })
-    }
+            .catch(error => {
+                console.log('Error:::::::', error);
+            });
+    };
 };
 
-export const dataLoaddedSuccess = (links) => {
+export const dataLoaddedSuccess = links => {
     return {
         type: actionTypes.DATA_LOADED,
-        links: links
-    }
+        links: links,
+    };
 };
 
-export const dataGroupsLoaddedSuccess = (groups) => {
+export const dataGroupsLoaddedSuccess = groups => {
     return {
         type: actionTypes.DATA_GROUPS_LOADED,
-        groups: groups
-    }
+        groups: groups,
+    };
 };
 
 export const dataLoaded = () => {
     return dispatch => {
-        axios.get("/links.json")
+        axios
+            .get('/links.json')
             .then(res => {
                 const _store = store.getState();
 
-                console.log("Getting Links : ",_store.topics);
+                console.log('Getting Links : ', _store.topics);
 
                 const groups = [];
                 for (let key in _store.topics) {
-                    if (key == "0") {
+                    if (key == '0') {
                         continue;
                     }
                     groups.push(_store.topics[key].value);
@@ -60,56 +62,59 @@ export const dataLoaded = () => {
                         }
                         tmpLinks.push({
                             ...res.data[key],
-                            id: key
+                            id: key,
                         });
                     }
-                    fetchedGroups[groups[gp]]= tmpLinks;
+                    fetchedGroups[groups[gp]] = tmpLinks;
                 }
                 const fetchedLinks = [];
                 for (let key in res.data) {
                     fetchedLinks.push({
                         ...res.data[key],
-                        id: key
+                        id: key,
                     });
                 }
 
-                console.log("fetchedGroups::",fetchedGroups);
+                console.log('fetchedGroups::', fetchedGroups);
 
                 dispatch(dataLoaddedSuccess(fetchedLinks));
                 dispatch(dataGroupsLoaddedSuccess(fetchedGroups));
             })
             .catch(err => {
-                console.log("Error:::::::::", err);
+                console.log('Error:::::::::', err);
             });
-    }
+    };
 };
 
-export const setTopics = (topics) => {
+export const setTopics = topics => {
     return {
         type: actionTypes.SET_TOPICS,
-        topics: topics
-    }
+        topics: topics,
+    };
 };
 
 export const initTopics = () => {
     return dispatch => {
-        axios.get("https://react-links-1df04.firebaseio.com/topics.json")
+        axios
+            .get('https://react-links-1df04.firebaseio.com/topics.json')
             .then(res => {
-                const fetchedTopics = [{
-                    value: 0,
-                    label: "..Choose a Topic..."
-                }];
+                const fetchedTopics = [
+                    {
+                        value: 0,
+                        label: '..Choose a Topic...',
+                    },
+                ];
                 for (let key in res.data) {
                     fetchedTopics.push({
                         value: key,
-                        label: key
+                        label: key,
                     });
                 }
                 dispatch(setTopics(fetchedTopics));
                 dispatch(dataLoaded());
             })
-            .catch(err=> {
-                console.log("Errror: ",err);
+            .catch(err => {
+                console.log('Errror: ', err);
             });
-    }
+    };
 };
