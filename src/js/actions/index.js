@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants/action-types';
 import axios from '../../axios-links';
 import store from '../store/index';
-import {GET_LINKS_FAILURE} from "../constants/action-types";
+import { GET_LINKS_FAILURE } from "../constants/action-types";
 
 export const addLinkSuccess = payload => {
     return {
@@ -82,7 +82,7 @@ export const initTopics = () => {
                     });
                 }
                 dispatch(setTopics(fetchedTopics));
-                dispatch(dataLoaded());
+                dispatch(getLinksRequest());
             })
             .catch(err => {
                 console.log('Errror: ', err);

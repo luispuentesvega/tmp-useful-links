@@ -52,7 +52,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onLoadData: () => dispatch(actions.dataLoaded()),
+		onLoadData: () => dispatch(actions.getLinksRequest()),
     };
 };
 
