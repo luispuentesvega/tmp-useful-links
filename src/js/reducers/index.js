@@ -2,33 +2,31 @@ import * as actionTypes from '../constants/action-types';
 
 const initialState = {
     links: [],
-    groups: [],
+    topics: [],
+    error: '',
 };
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_LINK:
-            let updatedGroups = { ...state.groups };
-            updatedGroups[action.link.topic].push(action.link);
             return {
                 ...state,
                 links: state.links.concat(action.link),
-                groups: updatedGroups,
             };
-        case actionTypes.DATA_LOADED:
+        case actionTypes.GET_LINKS_SUCCESS:
             return {
                 ...state,
                 links: action.links,
+            };
+        case actionTypes.GET_LINKS_FAILURE:
+            return {
+                ...state,
+                error: action.error,
             };
         case actionTypes.SET_TOPICS:
             return {
                 ...state,
                 topics: action.topics,
-            };
-        case actionTypes.DATA_GROUPS_LOADED:
-            return {
-                ...state,
-                groups: action.groups,
             };
         default:
             return state;
