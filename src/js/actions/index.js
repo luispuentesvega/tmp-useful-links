@@ -1,6 +1,7 @@
 import * as actionTypes from '../constants/action-types';
 import axios from '../../axios-links';
 import store from '../store/index';
+import {GET_LINKS_FAILURE} from "../constants/action-types";
 
 export const addLinkSuccess = payload => {
     return {
@@ -22,51 +23,25 @@ export const addLink = payload => {
     };
 };
 
-export const dataLoaddedSuccess = links => {
+export const getLinksSuccess = links => {
     return {
-        type: actionTypes.DATA_LOADED,
+        type: actionTypes.GET_LINKS_SUCCESS,
         links: links,
     };
 };
 
-export const dataGroupsLoaddedSuccess = groups => {
+export const getLinksError = error => {
     return {
-        type: actionTypes.DATA_GROUPS_LOADED,
-        groups: groups,
-    };
-};
+        type: GET_LINKS_FAILURE,
+        error: error
+    }
+}
 
-export const dataLoaded = () => {
+export const getLinksRequest = () => {
     return dispatch => {
         axios
             .get('/links.json')
             .then(res => {
-                const _store = store.getState();
-
-                console.log('Getting Links : ', _store.topics);
-
-                const groups = [];
-                for (let key in _store.topics) {
-                    if (key == '0') {
-                        continue;
-                    }
-                    groups.push(_store.topics[key].value);
-                }
-
-                const fetchedGroups = [];
-                for (let gp in groups) {
-                    let tmpLinks = [];
-                    for (let key in res.data) {
-                        if (res.data[key].topic != groups[gp]) {
-                            continue;
-                        }
-                        tmpLinks.push({
-                            ...res.data[key],
-                            id: key,
-                        });
-                    }
-                    fetchedGroups[groups[gp]] = tmpLinks;
-                }
                 const fetchedLinks = [];
                 for (let key in res.data) {
                     fetchedLinks.push({
@@ -74,14 +49,10 @@ export const dataLoaded = () => {
                         id: key,
                     });
                 }
-
-                console.log('fetchedGroups::', fetchedGroups);
-
-                dispatch(dataLoaddedSuccess(fetchedLinks));
-                dispatch(dataGroupsLoaddedSuccess(fetchedGroups));
+                dispatch(getLinksSuccess(fetchedLinks));
             })
             .catch(err => {
-                console.log('Error:::::::::', err);
+                dispatch(getLinksError(err));
             });
     };
 };
