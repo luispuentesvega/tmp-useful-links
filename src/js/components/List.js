@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import './styles/List.css';
+import deleteIcon from './Images/remove.png';
 
 class ConnectedList extends Component {
+
+    handleDeleteLink(id) {
+        this.props.deleteLink(id);
+    }
+
     render() {
         let buffer = [];
 
@@ -30,6 +36,7 @@ class ConnectedList extends Component {
                                     {' '}
                                     {link.title ? link.title : '...Not Found'}
                                 </a>
+                                <img src={deleteIcon} className="deleteIcon" onClick={() => this.handleDeleteLink(link.id)}/>
                             </li>
                         ))}
                     </ul>
@@ -53,6 +60,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onLoadData: () => dispatch(actions.getLinksRequest()),
+        deleteLink: (id) => dispatch(actions.deleteLink(id))
     };
 };
 

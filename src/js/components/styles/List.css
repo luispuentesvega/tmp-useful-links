@@ -31,7 +31,6 @@
     font-weight: bold;
     padding: 0 10px 6px;
     margin: 0;
-    margin-top: -34px;
     padding-bottom: 11px;
 }
 
@@ -54,4 +53,9 @@
 .main-group__links li a:hover,
 .main-group__links li a:active {
     color: black;
+}
+
+.deleteIcon {
+    cursor: pointer;
+    float: right;
 }
