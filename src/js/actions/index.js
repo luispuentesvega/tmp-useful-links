@@ -23,6 +23,19 @@ export const addLink = payload => {
     };
 };
 
+export const deleteLink = id => {
+    return dispatch => {
+        axios
+            .delete(`links/${id}.json`)
+            .then(res => {
+                dispatch(getLinksRequest());
+            })
+            .catch(error => {
+                console.log('Error::', error);
+            })
+    }
+}
+
 export const getLinksSuccess = links => {
     return {
         type: actionTypes.GET_LINKS_SUCCESS,
