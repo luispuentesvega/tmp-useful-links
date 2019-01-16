@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 
 const Filter = props => {
     let buffer = [];
-    for (let index in props.groups) {
+    for (let index in props.topics) {
+        console.log(props.topics[index]);
+        if (index ==0) {
+            continue;
+        }
+
         buffer.push(
-            <a key={index} href={'#' + index} className="filter-option">
-                {index}
+            <a key={props.topics[index].value} href={'#' + props.topics[index].value} className="filter-option">
+                {props.topics[index].value}
             </a>,
         );
     }
@@ -17,7 +22,7 @@ const Filter = props => {
 
 const mapStateToProps = state => {
     return {
-        groups: state.groups,
+        topics: state.topics,
     };
 };
 

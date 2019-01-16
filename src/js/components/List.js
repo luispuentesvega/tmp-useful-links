@@ -27,7 +27,7 @@ class ConnectedList extends Component {
 
         fetchedTopics.map((topic, index) => {
             buffer.push(
-                <li className="main-group" id={index} key={index}>
+                <li className="main-group" id={topic.title} key={topic.title}>
                     <h2 className="main-group__title">{topic.title}</h2>
                     <ul className="main-group__links">
                         {links.filter(link => link.topic === topic.title).map(link => (
