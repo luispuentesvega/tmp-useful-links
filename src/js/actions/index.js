@@ -3,14 +3,7 @@ import axios from '../../axios-links';
 import store from '../store/index';
 import { GET_LINKS_FAILURE } from "../constants/action-types";
 
-export const addLinkSuccess = payload => {
-    return {
-        type: actionTypes.ADD_LINK,
-        link: payload,
-    };
-};
-
-export const addLink = payload => {
+export const addLinkRequest = payload => {
     return dispatch => {
         axios
             .post('links.json', payload)
@@ -23,7 +16,34 @@ export const addLink = payload => {
     };
 };
 
-export const deleteLink = id => {
+export const addLinkSuccess = payload => {
+    return {
+        type: actionTypes.ADD_LINK_SUCCESS,
+        link: payload,
+    };
+};
+
+export const editLinkRequest = payload => {
+    return dispatch => {
+        axios
+            .put(`links/${payload.id}.json`, payload)
+            .then(res => {
+                dispatch(getLinksRequest());
+            })
+            .catch(err => {
+                console.log('Error::::', err);
+            })
+    }
+};
+
+export const editLinkSuccess = payload => {
+    return {
+        type: actionTypes.EDIT_LINK_SUCCESS,
+        link: payload
+    }
+};
+
+export const deleteLinkRequest = id => {
     return dispatch => {
         axios
             .delete(`links/${id}.json`)
@@ -34,21 +54,7 @@ export const deleteLink = id => {
                 console.log('Error::', error);
             })
     }
-}
-
-export const getLinksSuccess = links => {
-    return {
-        type: actionTypes.GET_LINKS_SUCCESS,
-        links: links,
-    };
 };
-
-export const getLinksError = error => {
-    return {
-        type: GET_LINKS_FAILURE,
-        error: error
-    }
-}
 
 export const getLinksRequest = () => {
     return dispatch => {
@@ -70,14 +76,28 @@ export const getLinksRequest = () => {
     };
 };
 
-export const setTopics = topics => {
+export const getLinksSuccess = links => {
     return {
-        type: actionTypes.SET_TOPICS,
+        type: actionTypes.GET_LINKS_SUCCESS,
+        links: links,
+    };
+};
+
+export const getLinksError = error => {
+    return {
+        type: GET_LINKS_FAILURE,
+        error: error
+    }
+};
+
+export const getTopicsSuccess = topics => {
+    return {
+        type: actionTypes.GET_TOPICS_SUCCESS,
         topics: topics,
     };
 };
 
-export const initTopics = () => {
+export const getTopicsRequest = () => {
     return dispatch => {
         axios
             .get('https://react-links-1df04.firebaseio.com/topics.json')
@@ -94,7 +114,7 @@ export const initTopics = () => {
                         label: key,
                     });
                 }
-                dispatch(setTopics(fetchedTopics));
+                dispatch(getTopicsSuccess(fetchedTopics));
                 dispatch(getLinksRequest());
             })
             .catch(err => {

@@ -8,7 +8,7 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADD_LINK:
+        case actionTypes.ADD_LINK_SUCCESS:
             return {
                 ...state,
                 links: state.links.concat(action.link),
@@ -18,15 +18,14 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 links: action.links,
             };
-        case actionTypes.GET_LINKS_FAILURE:
-            return {
-                ...state,
-                error: action.error,
-            };
-        case actionTypes.SET_TOPICS:
+        case actionTypes.GET_TOPICS_SUCCESS:
             return {
                 ...state,
                 topics: action.topics,
+            };
+        case actionTypes.EDIT_LINK_SUCCESS:
+            return {
+                ...state,
             };
         default:
             return state;

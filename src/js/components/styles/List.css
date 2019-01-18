@@ -1,10 +1,10 @@
-.main-groups {
+.topics {
     margin: 10px 12px;
     padding: 0;
     list-style: none;
 }
 
-.main-group {
+.topic {
     background: #ffffff;
     border-radius: 5px;
     margin: 10px auto;
@@ -12,7 +12,7 @@
     box-shadow: 0 2px 11px 0 rgba(0,0,0,.1);
 }
 
-.main-group__title {
+.topic__title {
     text-align: center;
     font-family: inherit;
     font-weight: bold;
@@ -20,13 +20,13 @@
     padding: 0;
 }
 
-.main-group__links {
+.topic__links {
     margin: 0;
     padding: 0 0 10px 0;
     list-style: none;
 }
 
-.main-group__footer {
+.topic__footer {
     text-align: right;
     font-weight: bold;
     padding: 0 10px 6px;
@@ -45,17 +45,22 @@
     height: 22px;
 }
 
-.main-group__links li {
+.topic__links li {
     margin: 4px 12px;
     padding: 1.5px 3px;
 }
 
-.main-group__links li a:hover,
-.main-group__links li a:active {
+.topic__links li a:hover,
+.topic__links li a:active {
     color: black;
 }
 
 .deleteIcon {
+    cursor: pointer;
+    float: right;
+    margin-left: 10px;
+}
+.editIcon {
     cursor: pointer;
     float: right;
 }

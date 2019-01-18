@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import './styles/List.css';
-import deleteIcon from './Images/remove.png';
+import Link from './Link';
 
 class ConnectedList extends Component {
-
-    handleDeleteLink(id) {
-        this.props.deleteLink(id);
+    updateLinkSelected = link => {
+        this.props.updateLinkSelected(link);
     }
 
     render() {
-        let buffer = [];
-
         const topics = this.props.topics
 			.filter(topic => topic.value!==0)
 			.map(topic => topic.value);
@@ -25,28 +22,27 @@ class ConnectedList extends Component {
 			}
 		});
 
-        fetchedTopics.map((topic, index) => {
-            buffer.push(
-                <li className="main-group" id={topic.title} key={topic.title}>
-                    <h2 className="main-group__title">{topic.title}</h2>
-                    <ul className="main-group__links">
-                        {links.filter(link => link.topic === topic.title).map(link => (
-                            <li key={link.id}>
-                                <a href={link.link} target="_blank">
-                                    {' '}
-                                    {link.title ? link.title : '...Not Found'}
-                                </a>
-                                <img src={deleteIcon} className="deleteIcon" onClick={() => this.handleDeleteLink(link.id)}/>
-                            </li>
+        const buffer = fetchedTopics.map(topic => {
+            return (
+                <li className="topic" id={topic.title} key={topic.title}>
+                    <h2 className="topic__title">{topic.title}</h2>
+                    <ul className="topic__links">
+                        {links
+                            .filter(link => link.topic === topic.title)
+                            .map(link => (
+                            <Link
+                                link={link}
+                                key={link.id}
+                                updateLinkSelected={()=>{this.updateLinkSelected(link)}}/>
                         ))}
                     </ul>
-                    <p className="main-group__footer">
+                    <p className="topic__footer">
                         <span className="footer__number">{topic.links.length}</span>
                     </p>
-                </li>,
+                </li>
             );
         });
-        return <ul className="main-groups">{ buffer }</ul>;
+        return <ul className="topics">{ buffer }</ul>;
     }
 }
 
@@ -60,7 +56,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onLoadData: () => dispatch(actions.getLinksRequest()),
-        deleteLink: (id) => dispatch(actions.deleteLink(id))
+        deleteLink: (id) => dispatch(actions.deleteLinkRequest(id))
     };
 };
 
