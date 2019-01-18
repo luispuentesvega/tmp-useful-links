@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 const Filter = props => {
     let buffer = [];
     for (let index in props.topics) {
-        console.log(props.topics[index]);
-        if (index ==0) {
+        if (index===0) {
             continue;
         }
 

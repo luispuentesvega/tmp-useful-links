@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import List from './List';
 import Filter from './Filter';
-import Form from './Form';
+import LinkForm from './LinkForm';
 import Modal from './Form/Modal';
 import './styles/App.css';
 import {connect} from 'react-redux';
@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 class ConnectedApp extends Component {
     state = {
         show: false,
+        linkSelected: '',
     };
 
     showModal = e => {
@@ -26,6 +27,12 @@ class ConnectedApp extends Component {
             show: false,
         });
     };
+
+    setLinkSelected = link => {
+        this.setState({
+            linkSelected: link
+        });
+    }
 
     showNotification() {
         toast('Succesfully Saved !');
@@ -42,20 +49,26 @@ class ConnectedApp extends Component {
                 <div className="Links">
                     <h2 className="main-title">Links</h2>
                     <Filter/>
-                    <List/>
+                    <List
+                        updateLinkSelected={(link)=>this.setLinkSelected(link)}
+                    />
                 </div>
                 <div className="Form DesktopForm">
                     <h2 className="main-title">Add Link</h2>
-                    <Form
+                    <LinkForm
+                        linkSelected={this.state.linkSelected}
                         showNotification={this.showNotification}
                         closeModal={this.closeModal}
                     />
                 </div>
                 <div className="icon-add" onClick={this.showModal}>
-                    <img src={add}/>
+                    <img alt="Add" src={add}/>
                 </div>
-                <Modal onClose={this.showModal} show={this.state.show}>
-                    <Form
+                <Modal
+                    onClose={this.showModal}
+                    show={this.state.show}>
+                    <LinkForm
+                        linkSelected={this.state.linkSelected}
                         showNotification={this.showNotification}
                         closeModal={this.closeModal}
                     />
@@ -67,7 +80,7 @@ class ConnectedApp extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onLoadTopics: () => dispatch(actions.initTopics()),
+        onLoadTopics: () => dispatch(actions.getTopicsRequest()),
     };
 };
 

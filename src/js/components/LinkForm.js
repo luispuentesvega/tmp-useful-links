@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addLink, initTopics } from '../actions';
+import {addLinkRequest, editLinkRequest, getTopicsRequest} from '../actions';
 import uuidv1 from 'uuid';
 import './styles/Form.css';
 import TextInput from './Form/TextInput';
-
-const mapDispatchToProps = dispatch => {
-    return {
-        addLink: link => dispatch(addLink(link)),
-        onInitTopics: () => dispatch(initTopics()),
-    };
-};
-
-const mapStateToProps = state => {
-    return {
-        topics: state.topics,
-    };
-};
 
 class ConnectedForm extends Component {
     constructor() {
@@ -25,13 +12,26 @@ class ConnectedForm extends Component {
             link: '',
             topicSelected: 0,
             title: '',
+            id: null,
         };
+
         this.options = [];
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.closeModalChild = this.closeModalChild.bind(this);
         this.showNotificationChild = this.showNotificationChild.bind(this);
         this.form = React.createRef();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.hasOwnProperty('linkSelected') && nextProps.linkSelected.hasOwnProperty('link')) {
+            this.setState({
+                link: nextProps.linkSelected.link,
+                topicSelected: nextProps.linkSelected.topic,
+                title: nextProps.linkSelected.title,
+                id: nextProps.linkSelected.id
+            });
+        }
     }
 
     componentDidMount() {
@@ -44,18 +44,28 @@ class ConnectedForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const { link, topicSelected, title } = this.state;
+        const { link, topicSelected, title, id } = this.state;
 
         if (topicSelected === 0) {
             return;
         }
 
-        this.props.addLink({
-            link: link,
-            topic: topicSelected,
-            title: title,
-            id: uuidv1(),
-        });
+        if (id != null) {
+            this.props.editLink({
+                link: link,
+                topic: topicSelected,
+                title: title,
+                id: id,
+            });
+
+        } else {
+            this.props.addLink({
+                link: link,
+                topic: topicSelected,
+                title: title,
+                id: uuidv1(),
+            });
+        }
 
         this.closeModalChild();
         this.showNotificationChild();
@@ -76,8 +86,8 @@ class ConnectedForm extends Component {
     }
 
     render() {
-        const { link, topic, title } = this.state;
-        const options = this.props.topics;
+        let { link, topicSelected, title } = this.state;
+        let options = this.props.topics;
 
         return (
             <div>
@@ -93,20 +103,20 @@ class ConnectedForm extends Component {
                         <select
                             className="Form__Select"
                             id="topicSelected"
-                            value={topic}
+                            value={topicSelected || '0'}
                             onChange={this.handleChange}
                             required
                         >
-                            {options != undefined
+                            {options !== undefined
                                 ? options.map(el => (
-                                      <option key={el.value}>{el.label}</option>
-                                  ))
+                                    <option key={el.value}>{el.label}</option>
+                                ))
                                 : null}
                         </select>
                     </div>
                     <div className="Form__Row">
                         <TextInput
-                            value={link}
+                            value={link || '' }
                             placeholder="Link"
                             id="link"
                             changed={event => {
@@ -116,7 +126,7 @@ class ConnectedForm extends Component {
                     </div>
                     <div className="Form__Row">
                         <TextInput
-                            value={title}
+                            value={title || ''}
                             placeholder="Title"
                             id="title"
                             changed={event => {
@@ -135,9 +145,23 @@ class ConnectedForm extends Component {
     }
 }
 
-const Form = connect(
+const mapDispatchToProps = dispatch => {
+    return {
+        addLink: link => dispatch(addLinkRequest(link)),
+        editLink: link => dispatch(editLinkRequest(link)),
+        onInitTopics: () => dispatch(getTopicsRequest()),
+    };
+};
+
+const mapStateToProps = state => {
+    return {
+        topics: state.topics,
+    };
+};
+
+const LinkForm = connect(
     mapStateToProps,
     mapDispatchToProps,
 )(ConnectedForm);
 
-export default Form;
+export default LinkForm;
