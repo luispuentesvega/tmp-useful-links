@@ -5,8 +5,12 @@ import './styles/List.css';
 import Link from './Link';
 
 class ConnectedList extends Component {
-    updateLinkSelected = link => {
-        this.props.updateLinkSelected(link);
+    handleEditLink = link => {
+       this.props.handleEditLink(link);
+    }
+
+    handleDeleteLink = id => {
+        this.props.deleteLink(id);
     }
 
     render() {
@@ -33,7 +37,8 @@ class ConnectedList extends Component {
                             <Link
                                 link={link}
                                 key={link.id}
-                                updateLinkSelected={()=>{this.updateLinkSelected(link)}}/>
+                                handleDeleteLink={()=>this.handleDeleteLink(link.id)}
+                                handleEditLink={()=>{this.handleEditLink(link)}}/>
                         ))}
                     </ul>
                     <p className="topic__footer">

@@ -3,19 +3,13 @@ import './styles/Filter.css';
 import { connect } from 'react-redux';
 
 const Filter = props => {
-    let buffer = [];
-    for (let index in props.topics) {
-        if (index===0) {
-            continue;
-        }
-
-        buffer.push(
-            <a key={props.topics[index].value} href={'#' + props.topics[index].value} className="filter-option">
-                {props.topics[index].value}
-            </a>,
-        );
-    }
-
+    let buffer = props.topics
+        .filter(topic => topic.value != '0')
+        .map(topic => {
+            return (<a key={topic.value} href={'#' + topic.value} className="filter-option">
+                {topic.value}
+            </a>)
+        });
     return <p className="filter-options">{buffer}</p>;
 };
 

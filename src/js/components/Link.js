@@ -8,7 +8,8 @@ class Link extends Component {
     }
 
     handleEditLink = link => {
-        this.props.updateLinkSelected(link);
+        console.log('Editing Link::::', link);
+        this.props.handleEditLink(link);
     }
 
     render () {
