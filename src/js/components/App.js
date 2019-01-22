@@ -16,6 +16,12 @@ class ConnectedApp extends Component {
         linkSelected: '',
     };
 
+    handleEditLink = link => {
+        this.setState({
+            linkSelected: link
+        });
+    }
+
     showModal = e => {
         this.setState({
             show: !this.state.show,
@@ -27,12 +33,6 @@ class ConnectedApp extends Component {
             show: false,
         });
     };
-
-    setLinkSelected = link => {
-        this.setState({
-            linkSelected: link
-        });
-    }
 
     showNotification() {
         toast('Succesfully Saved !');
@@ -50,8 +50,7 @@ class ConnectedApp extends Component {
                     <h2 className="main-title">Links</h2>
                     <Filter/>
                     <List
-                        updateLinkSelected={(link)=>this.setLinkSelected(link)}
-                    />
+                        handleEditLink={(link)=>this.handleEditLink(link)}/>
                 </div>
                 <div className="Form DesktopForm">
                     <h2 className="main-title">Add Link</h2>
