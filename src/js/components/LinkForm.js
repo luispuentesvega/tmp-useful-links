@@ -22,15 +22,17 @@ class ConnectedForm extends Component {
         this.showNotificationChild = this.showNotificationChild.bind(this);
         this.form = React.createRef();
     }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.hasOwnProperty('linkSelected') && nextProps.linkSelected.hasOwnProperty('link')) {
-            this.setState({
-                link: nextProps.linkSelected.link,
-                topicSelected: nextProps.linkSelected.topic,
-                title: nextProps.linkSelected.title,
-                id: nextProps.linkSelected.id
-            });
+    componentDidUpdate(prevProps) {
+        if (prevProps != this.props) {
+            let nextProps = this.props;
+            if (nextProps.hasOwnProperty('linkSelected') && nextProps.linkSelected.hasOwnProperty('link')) {
+                this.setState({
+                    link: nextProps.linkSelected.link,
+                    topicSelected: nextProps.linkSelected.topic,
+                    title: nextProps.linkSelected.title,
+                    id: nextProps.linkSelected.id
+                });
+            }
         }
     }
 

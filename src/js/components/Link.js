@@ -4,7 +4,7 @@ import editIcon from './Images/edit.png';
 
 class Link extends Component {
     handleDeleteLink = id => {
-        this.props.deleteLink(id);
+        this.props.handleDeleteLink(id);
     }
 
     handleEditLink = link => {

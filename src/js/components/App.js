@@ -17,6 +17,7 @@ class ConnectedApp extends Component {
     };
 
     handleEditLink = link => {
+        console.log('[App.js]>handleEditLink()',link);
         this.setState({
             linkSelected: link
         });
